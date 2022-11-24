@@ -1,0 +1,21 @@
+Presets:
+  General:
+    "General_ice_high_res":
+      value: "flowing ice, portrait, focus on face, complex, extremely detailed , elegant, CG,  (an extremely delicate and beautiful girl), incredibly absurdres, best quality,concept art"
+      negative: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts,signature, watermark, username, blurry, artist name,bad feet, multiple breasts, lowres, bad anatomy, bad hands, text, error, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, bad feet, single color, ((((ugly)))), (((duplicate))), ((morbid)), ((mutilated)), (((tranny))), (((trans))), (((trannsexual))), (hermaphrodite), (out of frame), extra fingers, mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), (((disfigured))), out of frame, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands,(fused fingers), (too many fingers), (((long neck))), more than one people, more than one light, more than one head, more than one face, more than one body,"
+    "General_fire_high_res":
+      value: "flowing fire, portrait, focus on face, complex, extremely detailed , elegant, CG, (an extremely delicate and beautiful girl), incredibly absurdres, best quality,concept art"
+      negative: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts,signature, watermark, username, blurry, artist name,bad feet, multiple breasts, lowres, bad anatomy, bad hands, text, error, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, bad feet, single color, ((((ugly)))), (((duplicate))), ((morbid)), ((mutilated)), (((tranny))), (((trans))), (((trannsexual))), (hermaphrodite), (out of frame), extra fingers, mutated hands, ((poorly drawn hands)), ((poorly drawn face)), (((mutation))), (((deformed))), ((ugly)), blurry, ((bad anatomy)), (((bad proportions))), ((extra limbs)), (((disfigured))), out of frame, (bad anatomy), gross proportions, (malformed limbs), ((missing arms)), ((missing legs)), (((extra arms))), (((extra legs))), mutated hands,(fused fingers), (too many fingers), (((long neck))), more than one people, more than one light, more than one head, more than one face, more than one body,"
+    "General_celluloid_online_clean":
+      value: "best quality, masterpiece, highres, original, extremely detailed wallpaper, intricate detailed"
+      param: "Steps: 30, Sampler: Euler, CFG scale: 11.5, Seed: 1058629707, Size: 512x768, Variation seed: 1692844643, Variation seed strength: 0.27, Seed resize from: 1088x512"
+Style:
+  ArtStyle:
+    ink doodle:
+      value: ink doodle
+    cartoon:
+      value: "(((cartoon)))"
+  3D:
+    3dCG:
+      value: "3d"
+ 
