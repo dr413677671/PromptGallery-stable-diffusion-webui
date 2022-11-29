@@ -55,10 +55,18 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li>
+      <a href="#usage">Usage</a>
+      <ul>
+        <li><a href="#build-library">Build Library</a></li>
+        <li><a href="#start-stable-diffusion-webui">Start stable-diffusion-webui</a></li>
+        <li><a href="#build-library">Build Library</a></li>
+        <li><a href="#start-prompt-gallery">Start Prompt Gallery</a></li>
+        <li><a href="#populate-previews-and-qc">Populate previews </a></li>
+        <li><a href="#populate-previews-and-qc">Quality Contorl</a></li>
+      </ul>
+    </li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -90,15 +98,15 @@ Keep your pace. Let's start from building your prompt library.
 
 
 ### Built With
+<br>
 
-* [![Python][python-img]][python-url]
+* [![Pytorch][Pytorch]][Pytorch-url]
 * [![React][fastapi-img]][fastapi-url]
 * [![Vue][Vue.js]][Vue-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![JavaScript][JSP]][JSP-url]
+* Gradio
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -106,19 +114,19 @@ Keep your pace. Let's start from building your prompt library.
 
 ### Prerequisites
 
-1) Clone Prompt-Gallery extension.
-* git
+Clone Prompt-Gallery extension.
+
   ```sh
   git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
   ```
 
 alternative-1) Download from github release
 
-TBD
+> TBD
 
 alternative-2) Download from docker hub
 
-TBD
+> TBD
 
 ### Installation
 
@@ -137,7 +145,9 @@ TBD
 View the video tutorial:
 <a href="https://www.youtube.com/watch?v=9U6-moIJUkk">View Demo</a>
 
-### Build up the prompt library and character library.
+### Build library
+
+Build up the prompt library and character library.
 
 | value | negative | param |
 | :-----| ----: | :----: |
@@ -196,7 +206,7 @@ Teamplate:
 
   ![2-2](./images/2-2.JPG)
 
-### Populate previews
+### Populate previews and QC
 
   For instance having added two prompt-sets, and we would like to add preview pictures for them.
 
@@ -245,12 +255,11 @@ Contributions are what make the open source community such an amazing place to l
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 * [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 * [novelai-tag](https://github.com/blacktunes/novelai-tag)
+* [Gradio](https://github.com/gradio-app/gradio)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -270,9 +279,11 @@ Contributions are what make the open source community such an amazing place to l
 [product-screenshot]: images/screenshot.png
 [Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
 [Vue-url]: https://vuejs.org/
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
-[python-img]: https://img.shields.io/badge/python-v3.9-green
+[JSP]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
+[JSP-url]: https://github.com/TheAlgorithms/JavaScript
+[python-img]: https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue
 [python-url]: https://www.python.org/
-[fastapi-img]: https://img.shields.io/badge/FastAPI-v0.87.0-green
+[fastapi-img]: https://img.shields.io/badge/fastapi-109989?style=for-the-badge&logo=FASTAPI&logoColor=white
 [fastapi-url]: https://fastapi.tiangolo.com/
+[Pytorch]: https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white
+[Pytorch-url]: https://github.com/pytorch/pytorch
