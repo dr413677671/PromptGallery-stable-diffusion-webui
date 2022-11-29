@@ -25,10 +25,10 @@
   <p align="center">
     A prompt cookbook worked as stable-diffusion-webui extenstions.
     <br />
-    <a href="https://github.com/dr413677671/PromptGallery-stable-diffusion-webui/README.md"><strong>Explore the docs »</strong></a>
+    <a href="https://www.youtube.com/watch?v=9U6-moIJUkk"><strong>Watch Demo »</strong></a>
     <br />
     <br />
-    <a href="https://www.youtube.com/watch?v=9U6-moIJUkk">View Demo</a>
+    <a href="https://github.com/dr413677671/PromptGallery-stable-diffusion-webui/README.md">Explore the docs</a>
     ·
     <a href="https://github.com/dr413677671/PromptGallery-stable-diffusion-webui/issues">Report Bug</a>
     ·
@@ -98,7 +98,6 @@ Keep your pace. Let's start from building your prompt library.
 
 
 ### Built With
-<br>
 
 * [![Pytorch][Pytorch]][Pytorch-url]
 * [![React][fastapi-img]][fastapi-url]
