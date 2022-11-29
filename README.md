@@ -120,11 +120,11 @@ Clone Prompt-Gallery extension.
   git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
   ```
 
-alternative-1) Download from github release
+Alternative-1) Download from github release
 
 > TBD
 
-alternative-2) Download from docker hub
+Alternative-2) Download from docker hub
 
 > TBD
 
