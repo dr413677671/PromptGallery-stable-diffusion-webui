@@ -23,7 +23,7 @@
 
   <h3 align="center">Prompt Gallery</h3>
   <p align="center">
-    A prompt cookbook worked as stable-diffusion-webui extenstions.
+    A prompt cookbook worked as [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) extenstions.
     <br />
     <a href="https://www.youtube.com/watch?v=9U6-moIJUkk"><strong>Watch Demo »</strong></a>
     <br />
@@ -82,16 +82,18 @@
 
 ## About The Project
 
-TLDR; Stable-diffusion is an AI model which can generate illustration based on text-based prompts. What does a prompt/prompt-set looks like in AI's eyes? Could we do AI illustraion like shopping?
+TLDR; Stable-diffusion is an AI model which can generate illustration based on text-based prompts. What does a prompt/prompt-set in AI's eyes? How do we do prompt combination like shopping? 
 
-Prompt Gallery works as a guidebook to ease users life in AI art creation. Look at previews and select prompt-set. Life is that easy.
+This is an extension of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). Checkout this powerful tool.
+
+Use Prompt Gallery like a cookbook. Build your own prompt-set library and do illustration/creation. Life is that easy.
 
 ## Cool Features:
 * Scalable Prompt Library
 * Stable-Diffusion-WebUI Integration
 * Avatar System (model/character presets)
 
-Keep your pace. Let's start from building your prompt library.
+Keep your pace. Let's start from building your prompt library. <a href="#build-library">Build Library</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
