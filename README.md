@@ -101,11 +101,11 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
 
 ### Built With
 
-* [![Pytorch][Pytorch]][Pytorch-url]
-* [![React][fastapi-img]][fastapi-url]
 * [![Vue][Vue.js]][Vue-url]
 * [![JavaScript][JSP]][JSP-url]
 * Gradio
+* [![Pytorch][Pytorch]][Pytorch-url]
+* [![React][fastapi-img]][fastapi-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
