@@ -23,7 +23,7 @@
 
   <h3 align="center">Prompt Gallery</h3>
   <p align="center">
-    A prompt cookbook worked as [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) extenstions.
+    A prompt cookbook worked as <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">stable-diffusion-webui</a> extenstions.
     <br />
     <a href="https://www.youtube.com/watch?v=9U6-moIJUkk"><strong>Watch Demo »</strong></a>
     <br />
