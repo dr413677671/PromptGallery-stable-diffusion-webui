@@ -119,9 +119,9 @@ go to a directory somewhere empty.
   ```sh
   git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
   ```
-copy ./PromptGallery-stable-diffusion-webui/prompt-gallery to <stable-diffusion-webui project path> /extensions 
+copy ./PromptGallery-stable-diffusion-webui/prompt-gallery to stable-diffusion-webui-project-path/extensions 
 
-copy ./PromptGallery-stable-diffusion-webui/scripts/prompt_gallery.py to <stable-diffusion-webui project path> /scripts 
+copy ./PromptGallery-stable-diffusion-webui/scripts/prompt_gallery.py to table-diffusion-webui-project-path/scripts 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
