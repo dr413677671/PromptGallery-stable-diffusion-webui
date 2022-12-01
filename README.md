@@ -77,7 +77,7 @@
 <!-- ABOUT THE PROJECT -->
 
 <div align=center>
-<img src='./prompt-gallery/images/front.JPG'>
+<img src='./images/front.JPG'>
 </div>
 
 ## About The Project
@@ -113,30 +113,39 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
 ## Getting Started
 
 
-### Prerequisites & Installation
+### Prerequisites
 
-go to the directory <stable-diffusion-webui project path>/extensions and run command to install:
+Clone Prompt-Gallery extension.
 
   ```sh
   git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
   ```
 
-  ```sh
-  pip install -r requirements.txt
-  ```
+Alternative-1) Download from github release
 
-  ```sh
-  python setup.py
-  ```
+> TBD
+
+Alternative-2) Download from docker hub
+
+> TBD
+
+### Installation
+
+1. Paste Prompt-Gallery in the root directory of stable-diffusion-webui. Please make sure:
+1.1 <prompt_gallery_directory>/extension/* is paste to <webui-directory>/extension/.
+1.2 <prompt_gallery_directory>/script/* is paste to <webui-directory>/script/.
+2. Start ./webui-user.sh
+3. If you see an error of missing library. Run 
+   ```sh
+   pip install -r <stable-diffusion-webui-path>/extensions/prompt-gallery/requirements.txt
+   ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Usage
 
-Start ./webui-user.sh
-
-View the video tutorial to use prompt-gallery:
+View the video tutorial:
 <a href="https://www.youtube.com/watch?v=9U6-moIJUkk">View Demo</a>
 
 ### Build library
@@ -194,43 +203,41 @@ Teamplate:
 
   Select avatar (model for demo) -> Select prompt-sets -> Click "send WebUI"
 
-  ![2-1](./prompt-gallery/images/2-1.JPG)
+  ![2-1](./images/2-1.JPG)
 
   Checkout the downloaded Images
 
-  ![2-2](./prompt-gallery/images/2-2.JPG)
+  ![2-2](./images/2-2.JPG)
 
 ### Populate previews and QC
 
   For instance having added two prompt-sets, and we would like to add preview pictures for them.
 
-  ![3-1](./prompt-gallery/images/3-1.JPG)
+  ![3-1](./images/3-1.JPG)
 
   Goto tab "txt2img" and Select "Prompt Gallery" in tab "scripts"
 
-  ![3-2](./prompt-gallery/images/3-2.JPG)
+  ![3-2](./images/3-2.JPG)
 
   Upload yaml library of avatar first and select avatar.
 
-  ![3-3](./prompt-gallery/images/3-3.JPG)
+  ![3-3](./images/3-3.JPG)
 
   Add default prompts and upload prompt-set yaml library.
 
-  ![3-4](./prompt-gallery/images/3-4.JPG)
+  ![3-4](./images/3-4.JPG)
 
   Wait for stable-diffusion-webui generate previews automatically.
 
-  ![3-5](./prompt-gallery/images/3-5.JPG)
+  ![3-5](./images/3-5.JPG)
 
   Pick the best image for preview.
 
-  ![3-6](./prompt-gallery/images/3-6.JPG)
+  ![3-6](./images/3-6.JPG)
 
   Check it out in Prompt Gallery.
 
-  ![3-7](./prompt-gallery/images/3-7.JPG)
-
-  You could always inspect you pictures manually in prompt-gallery-directory/assets/preview/
+  ![3-7](./images/3-7.JPG)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
