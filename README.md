@@ -131,7 +131,9 @@ Alternative-2) Download from docker hub
 
 ### Installation
 
-1. Paste Prompt-Gallery in the root directory of stable-diffusion-webui.
+1. Paste Prompt-Gallery in the root directory of stable-diffusion-webui. Please make sure:
+1.1 <prompt_gallery_directory>/extension/* is paste to <webui-directory>/extension/.
+1.2 <prompt_gallery_directory>/script/* is paste to <webui-directory>/script/.
 2. Start ./webui-user.sh
 3. If you see an error of missing library. Run 
    ```sh
