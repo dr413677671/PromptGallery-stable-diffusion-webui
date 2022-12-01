@@ -114,14 +114,31 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
 
 ### Prerequisites & Installation
 
-go to a directory somewhere empty.
+First, go to an empty directory where you store the temp.
+
+Run git clone to get the clone-gallery.
 
   ```sh
   git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
   ```
-copy ./PromptGallery-stable-diffusion-webui/prompt-gallery to stable-diffusion-webui-project-path/extensions 
 
-copy ./PromptGallery-stable-diffusion-webui/scripts/prompt_gallery.py to table-diffusion-webui-project-path/scripts 
+Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) before. If not check out [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to install it first.
+
+You have two options now. :>
+
+Option A:
+
+> copy ./PromptGallery-stable-diffusion-webui/prompt-gallery  to  stable-diffusion-webui-project-path/extensions 
+
+> copy ./PromptGallery-stable-diffusion-webui/scripts/prompt_gallery.py  to  table-diffusion-webui-project-path/scripts 
+
+Option B:
+
+> Alternatively, goto the promptgallery-stable-diffusion-webui folder and run
+
+  ```sh
+  python setup.py <table-diffusion-webui-project-path>
+  ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
