@@ -111,7 +111,7 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
 <!-- GETTING STARTED -->
 ## Getting Started
 
- > 🐘 Good news: we now support webui dark theme.
+ > 🐘 Good news: we now adapt to webui dark theme.
 
 ### Prerequisites & Installation
 
@@ -124,6 +124,13 @@ Run git clone to get the prompt-gallery.
   ```
  
 Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) before. If not check out [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to install it first.
+
+**Make sure you add "--api --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat (where you start webui) like this:** 
+
+![install](./images/0-1.JPG)
+
+
+
 
 Follow instructions on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to start webui
 
@@ -138,7 +145,7 @@ Goto Tab extensions in the webui and paste:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-3. Make sure you add "--api --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat (where you start webui)
+
 
 ## Usage
 
