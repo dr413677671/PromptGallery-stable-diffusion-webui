@@ -111,6 +111,7 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
 <!-- GETTING STARTED -->
 ## Getting Started
 
+ > 🐘 Good news: we now support webui dark theme.
 
 ### Prerequisites & Installation
 
@@ -121,7 +122,7 @@ Run git clone to get the prompt-gallery.
   ```sh
   git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
   ```
-
+ 
 Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) before. If not check out [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to install it first.
 
 Follow instructions on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to start webui
@@ -137,22 +138,36 @@ Goto Tab extensions in the webui and paste:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+3. Make sure you add "--api --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat (where you start webui)
 
 ## Usage
 
+After installation, try restart webui. You should see a initial frontpage like this.
 
-View the video tutorial to use prompt-gallery:
+ ![preset](./images/0-0.png)
+
+You might wonder why there is no preview pictures. Prompt Gallery works like a framework. You need to generate your own prompt-set library for your own purpose.
+
+How follow the instructions below to build your own prompt-set library and generate previews for them.
+
+Instead you could watch the video tutorial:
 <a href="https://www.youtube.com/watch?v=9U6-moIJUkk">View Demo</a>
+
+Speaking ahead. Don't be afraid to build a large library. There are some useful repo help you browse the prompts.
+
+E.g. If you love anime, goto github and search "tags" or "prompts".
+
+You will see many cool repo like [sd-danbooru-tags](https://github.com/Vetchems/sd-danbooru-tags) or [DeepDanbooru](https://github.com/KichangKim/DeepDanbooru) which will help you browse prompts and build your prompt-set library very quick.
 
 ### Build library
 
-Build up the prompt library and character library.
+Build up the prompt-set library and character library.
 
 | value | negative | param |
 | :-----| ----: | :----: |
-| Positive prompts | Negative prompts | Other params of image generation |
+| Positive prompts | Negative prompts | Other params for webui image generation |
 
-Edit the teamplate at <stable-diffusion-webui-path>/extensions/prompt-gallery/assets/avatars.yaml, and customize your avatars.
+Edit the teamplate at <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/avatars.yaml, and customize your avatars with prompts.
 
 Teamplate: 
    ```yaml
@@ -163,9 +178,37 @@ Teamplate:
       value: "petite, 1girl, solo, pink hair, very long hair, school uniform, happy,outdoors, flower field, excited"
    ```
 
-Edit the teamplate at <stable-diffusion-webui-path>/extensions/prompt-gallery/assets/tags.yaml, and create your prompt-set categorical library.
+See the teamplate at <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/tags.yaml, and create your own prompt-set library.
 
-Teamplate: 
+The yaml file worked Hierarchyly.
+
+For example you can create tags.yaml like this
+
+   ```yaml
+    Figure:
+      Hair:
+        "ponny-tail":
+          value: "ponny-tail"
+          negative: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, "
+          value: "short_hair"
+          negative: "long_hair，lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, "
+    Background:
+      '':
+        simple background:
+          value: simple background
+        sunburst background:
+          value: sunburst background
+      Nature:
+        Space:
+          value: "space background, space,"
+        Startrails:
+          value: colorful startrails
+        Woods:
+          value: "Woods background, fantacy background,"
+   ```
+
+Or something more powerful like webui config in "param" 
+
    ```yaml
     Style:
       General Effect:
@@ -187,15 +230,13 @@ Teamplate:
    ```
 
 
-### Start stable-diffusion-webui
-
-   ```sh
-    ./webui-user.bat
-   ```
-
 ### Start Prompt Gallery
 
+  Refresh webui.
+
   Slect tab "Prompt Gallery" on top navigation bar.
+
+  You should see your prompts in prompt-gallery.
 
   Select avatar (model for demo) -> Select prompt-sets -> Click "send WebUI"
 
@@ -205,9 +246,11 @@ Teamplate:
 
   ![2-2](./images/2-2.JPG)
 
+  But just the prompt-set is not enough. Let's generate preview picture for them.
+
 ### Populate previews and QC
 
-  For instance having added two prompt-sets, and we would like to add preview pictures for them.
+  For instance having added two new prompt-sets, there will be no preview pictures for them.
 
   ![3-1](./images/3-1.JPG)
 
