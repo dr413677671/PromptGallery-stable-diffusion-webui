@@ -51,7 +51,7 @@ def on_ui_settings():
 
 
 def on_ui_tabs():
-    html = """<iframe id="tab_iframe" style="width: 100%; min-height: 864px; padding: 0;margin: 0;border: none;" src="http://localhost:5173/" frameborder="0" marginwidth="0" marginheight="0"></iframe>"""
+    html = """<iframe id="tab_iframe" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://localhost:5173/" frameborder="0" marginwidth="0" marginheight="0"></iframe>"""
     with gr.Blocks(analytics_enabled=False, elem_id="prompt_gallery") as prompt_gallery:
         prompt_gallery = gr.HTML(html)
     

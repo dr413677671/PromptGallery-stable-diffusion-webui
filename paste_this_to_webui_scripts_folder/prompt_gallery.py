@@ -429,7 +429,7 @@ def scan_outputs(avatar_name):
 def update_gallery(dropdown, avatar):
     root = OUTPATH_SAMPLES
     global trg_img, current_folder
-    current_folder = root + dropdown
+    current_folder = os.path.join(root, dropdown)
     trg_img = os.path.join(root, dropdown, avatar + '.png')
     return qc_dict[dropdown]
 
@@ -444,7 +444,7 @@ def clean_select_picture(filename):
                 is_avatar = True
                 break
         if os.path.splitext(file)[0] in filename:
-            os.rename(os.path.join(current_folder, file, trg_img))
+            os.rename(os.path.join(current_folder, file), trg_img)
         elif is_avatar == False:
             os.remove(os.path.join(current_folder, file))
 
