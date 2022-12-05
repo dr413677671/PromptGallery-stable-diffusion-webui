@@ -276,7 +276,24 @@ Or do something like setup the webui parameters in "param":
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-### Completely Uninstall
+### Cutomize default image generation parameters
+
+Edit webui-directory/scripts/prompt_gallery.py
+
+You should see the customize setup at the top:
+
+```python
+BATCH_SIZE = 4
+N_ITER = 2
+STEPS = 30
+CFG_SCALE = 11.5
+WIDTH = 512
+HEIGHT = 768
+SAMPLER_INDEX = 1
+RESTORE_FACE = 'true'
+TILING = 'false'
+DO_NOT_SAVE_GRID = 'false'
+```
 
 
 

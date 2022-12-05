@@ -52,7 +52,6 @@ SAMPLER_INDEX = 1
 RESTORE_FACE = 'true'
 TILING = 'false'
 DO_NOT_SAVE_GRID = 'false'
-SD_MODEL = '925997e9'
 
 EXCLUDED_TAGS = ['']
 global SKIP_EXISTS
