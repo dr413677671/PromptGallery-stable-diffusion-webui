@@ -278,7 +278,7 @@ Or do something like setup the webui parameters in "param":
 
 ### Cutomize default image generation parameters
 
-Edit webui-directory/scripts/prompt_gallery.py
+Edit webui-directory/extension/prompt-gallery-extension-name/paste_this_to_webui_scripts_folder/prompt_gallery.py
 
 You should see the customize setup at the top:
 
@@ -295,7 +295,7 @@ TILING = 'false'
 DO_NOT_SAVE_GRID = 'false'
 ```
 
-
+Change the params if you need.
 
 <!-- CONTRIBUTING -->
 ## Contributing
