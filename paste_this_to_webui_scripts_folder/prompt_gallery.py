@@ -448,10 +448,8 @@ def clean_select_picture(filename):
                 is_avatar = True
                 break
         if '-' in file and file.split('-')[1] in filename:
-            print("rename", os.path.join(current_folder, file), trg_img)
             os.rename(os.path.join(current_folder, file), trg_img)
         elif is_avatar == False:
-            print(file, "delete", os.path.join(current_folder, file))
             os.remove(os.path.join(current_folder, file))
 
 def image_url(filedata):
