@@ -42,7 +42,7 @@ except:
 OUTPATH_SAMPLES = os.path.join(root_path, 'extensions', extension_name, 'assets', 'preview')
 OUTPATH_GRIDS =  os.path.join(root_path, 'extensions', extension_name, 'assets', 'grid')
 
-BATCH_SIZE = 4
+BATCH_SIZE = 2
 N_ITER = 2
 STEPS = 30
 CFG_SCALE = 11.5
@@ -443,9 +443,11 @@ def clean_select_picture(filename):
             if each_avatar + '.png' == file:
                 is_avatar = True
                 break
-        if os.path.splitext(file)[0] in filename:
+        if file.split('-')[1] in filename:
+            # print("rename", os.path.join(current_folder, file), trg_img)
             os.rename(os.path.join(current_folder, file), trg_img)
         elif is_avatar == False:
+            # print(file, "delete", os.path.join(current_folder, file))
             os.remove(os.path.join(current_folder, file))
 
 def image_url(filedata):
