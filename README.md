@@ -143,18 +143,16 @@ After installation, try restart webui. You should see a initial frontpage like t
 
  ![preset](./images/0-0.png)
 
-You might wonder why there is no preview pictures. Prompt Gallery works like a framework. You need to generate your own prompt-set library for your own purpose.
+There is no preview pictures. Prompt Gallery works like a framework. You need to generate your own prompt-set library.
 
-How follow the instructions below to build your own prompt-set library and generate previews for them.
-
-Instead you could watch the video tutorial:
+Please follow the instructions below to build your own prompt-set library: instead you could watch the video tutorial:
 <a href="https://www.youtube.com/watch?v=9U6-moIJUkk">View Demo</a>
 
-Speaking ahead. Don't be afraid to build a large library. There are some useful repo help you browse the prompts.
+Don't be afraid to build the library. There are some cool repo help you browse the prompts.
 
 E.g. If you love anime, goto github and search "tags" or "prompts".
 
-You will see many cool repo like [sd-danbooru-tags](https://github.com/Vetchems/sd-danbooru-tags) or [DeepDanbooru](https://github.com/KichangKim/DeepDanbooru) which will help you browse prompts and build your prompt-set library very quick.
+You will see many cool repos like [sd-danbooru-tags](https://github.com/Vetchems/sd-danbooru-tags) or [DeepDanbooru](https://github.com/KichangKim/DeepDanbooru).
 
 ### Build library
 
@@ -177,9 +175,7 @@ Teamplate:
 
 See the teamplate at <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/tags.yaml, and create your own prompt-set library.
 
-The yaml file worked Hierarchyly.
-
-For example you can create tags.yaml like this
+Categorized your prompt-set Hierarchyly. For example you can create tags.yaml like this:
 
    ```yaml
     Figure:
@@ -204,7 +200,7 @@ For example you can create tags.yaml like this
           value: "Woods background, fantacy background,"
    ```
 
-Or something more powerful like webui config in "param" 
+Or do something like setup the webui parameters in "param":
 
    ```yaml
     Style:
@@ -271,7 +267,7 @@ Or something more powerful like webui config in "param"
 
   ![3-6](./images/3-6.JPG)
 
-  Check it out in Prompt Gallery.
+  Reflesh. Check it out in Prompt Gallery.
 
   ![3-7](./images/3-7.JPG)
 
