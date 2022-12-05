@@ -275,6 +275,11 @@ Or do something like setup the webui parameters in "param":
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+### Completely Uninstall
+
+
+
 <!-- CONTRIBUTING -->
 ## Contributing
 

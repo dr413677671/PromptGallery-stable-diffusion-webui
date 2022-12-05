@@ -8,6 +8,7 @@ import yaml
 import platform
 import subprocess as sp
 import shutil
+import json
 import tempfile
 import gradio as gr
 import csv
@@ -36,10 +37,13 @@ else:
     else:
         root_path = "./"
 
-# OUTPATH_SAMPLES = root_path + "/outputs/preview_outputs/preview/"
-# OUTPATH_GRIDS = root_path + "/outputs/preview_outputs/grid/"
-OUTPATH_SAMPLES = './extensions/prompt-gallery/assets/preview/'
-OUTPATH_GRIDS = './extensions/prompt-gallery/assets/grid/'
+try:
+    with open("./extensions/prompt_gallery_name.json") as fd:
+        extension_name = json.load(fd)['name']
+except:
+    extension_name = "Prompt Gallery"
+OUTPATH_SAMPLES = './extensions/{}/assets/preview/'.format(extension_name)
+OUTPATH_GRIDS = './extensions/{}/assets/grid/'.format(extension_name)
 
 BATCH_SIZE = 4
 N_ITER = 2
