@@ -87,6 +87,8 @@ This is an extension of [stable-diffusion-webui](https://github.com/AUTOMATIC111
 
 Use Prompt Gallery like a cookbook. Build your own prompt-set library and do illustration/creation. Life is that easy.
 
+> Please star the repo if you likes it :>
+
 ## Cool Features:
 * Scalable Prompt Library
 * Stable-Diffusion-WebUI Integration
