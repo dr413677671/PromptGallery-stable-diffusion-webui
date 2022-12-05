@@ -36,13 +36,18 @@ def on_ui_settings():
     
     thread = threading.Thread(target= uvicorn.run, kwargs={'app':app, 'host': 'localhost', 'port':5173})
     thread.start()
-    tmp = requests.get("http://localhost:5173")
-    while tmp.status_code != 204 and tmp.status_code != 200:
-        time.sleep(0.01)
-        tmp = requests.get("http://localhost:5173")
-    pass
-    # thread.join()
 
+    wait_time = 0
+    if_connect =False
+
+    while if_connect == False and wait_time<=6:
+        try:
+            tmp = requests.get("http://localhost:5173")
+            if_connect = True if int(tmp.status_code) /100 == 2. or int(tmp.status_code) /100 == 2 else False
+        except:
+            print(".")
+            time.sleep(10)
+            wait_time+=1
 
 
 def on_ui_tabs():
