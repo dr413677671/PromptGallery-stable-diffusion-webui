@@ -257,6 +257,8 @@ Or do something like setup the webui parameters in "param":
 
   Add default prompts or default negative (prompt or negative prompt attach to each prompt-set), and upload prompt-set yaml library.
 
+  If you dont want to skip the prompt-set whose preview is already generated -> Uncheck "skip exists".
+
   ![3-4](./images/3-4.JPG)
 
   Wait for stable-diffusion-webui generate previews automatically.

@@ -296,7 +296,7 @@ def rename_preview(avatar_name):
         return
     root = OUTPATH_SAMPLES
     for folder in os.listdir(root):
-        files = os.listdir(root + folder)
+        files = os.listdir(os.path.join(root, folder))
         if 'Not-available.png' in files:
             print('Skip '+ folder + ' not available.')
             continue
@@ -351,7 +351,7 @@ class PromptStyle(typing.NamedTuple):
 def save_styles() -> None:
     if len(OUTPUTS.keys()) == 0:
         return
-    path = root_path + '/styles.csv'
+    path = os.path.join(root_path, 'styles.csv')
     # Write to temporary file first, so we don't nuke the file if something goes wrong
     fd, temp_path = tempfile.mkstemp(".csv")
     with os.fdopen(fd, "w", encoding="utf-8-sig", newline='') as file:
@@ -371,10 +371,10 @@ def save_styles() -> None:
 def load_prompt(file, default_negative, dropdown, skip_exist):
     global SKIP_EXISTS
     SKIP_EXISTS = skip_exist
-    if dropdown == '':
+    if dropdown == '' or file is None:
         return
     rawDict = yaml.load(file, Loader = yaml.BaseLoader)
-    default_negative = default_negative + ',' + avatar_negatives[avatar_names.index(dropdown)]
+    default_negative = default_negative + ',' + avatar_negatives[avatar_names.index(dropdown)] 
     parse_yaml_dict(rawDict, "", avatar_prompts[avatar_names.index(dropdown)], dropdown, default_negative)
     prompt_txt = ""
     keys = list(filter(lambda x: x not in EXCLUDED_TAGS, OUTPUTS.keys()))
@@ -390,8 +390,12 @@ def load_avartar(avatar_dict, customize_tags_positive):
         avatar_names.append(name)
         if 'value' in prompt.keys():
             avatar_prompts.append(customize_tags_positive + ', ' +  prompt['value'])
+        else:
+            avatar_prompts.append(customize_tags_positive + ', ' +  '')
         if 'negative' in prompt.keys():
             avatar_negatives.append(prompt['negative'])
+        else:
+            avatar_negatives.append('')
     return [gr.Dropdown.update(choices=avatar_names, value=avatar_names[0]), gr.Column.update(visible=True),  gr.Group.update(visible=True)] 
 
 def scan_outputs(avatar_name):
@@ -443,11 +447,11 @@ def clean_select_picture(filename):
             if each_avatar + '.png' == file:
                 is_avatar = True
                 break
-        if file.split('-')[1] in filename:
-            # print("rename", os.path.join(current_folder, file), trg_img)
+        if '-' in file and file.split('-')[1] in filename:
+            print("rename", os.path.join(current_folder, file), trg_img)
             os.rename(os.path.join(current_folder, file), trg_img)
         elif is_avatar == False:
-            # print(file, "delete", os.path.join(current_folder, file))
+            print(file, "delete", os.path.join(current_folder, file))
             os.remove(os.path.join(current_folder, file))
 
 def image_url(filedata):
@@ -475,7 +479,12 @@ def image_url(filedata):
     return image
 
 
-            
+def dropdown_change():
+    global OUTPUTS, OUTPUTS_DICT
+    default_negative = []
+    OUTPUTS = {}
+    OUTPUTS_DICT = []
+    return [ gr.File.update(value=None), gr.Textbox.update(value=None)]   
                     
 
 class Script(scripts.Script):
@@ -531,6 +540,7 @@ class Script(scripts.Script):
                     outputs=[selected_img],
         )
             # qc_select.click(fn=select_picture, inputs=[dropdown, preview_dropdown, preview_gallery], outputs=[])
+        dropdown.change(fn=dropdown_change, inputs=[], outputs=[prompt_dict, prompt_display])
         rename_button.click(fn=rename_preview, inputs=[dropdown], outputs=[])
             # qc_select.click(fn=scan_outputs, inputs=[], outputs=[preview_dropdown])
 
