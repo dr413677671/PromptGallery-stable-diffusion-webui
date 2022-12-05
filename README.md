@@ -114,22 +114,12 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
  > 🐘 Good news: we now adapt to webui dark theme.
 
 ### Prerequisites & Installation
-
-First, go to an empty directory where you store the temp.
-
-Run git clone to get the prompt-gallery.
-
-  ```sh
-  git clone https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git
-  ```
  
 Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) before. If not check out [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to install it first.
 
 **Make sure you add "--api --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat (where you start webui) like this:** 
 
 ![install](./images/0-1.JPG)
-
-
 
 
 Follow instructions on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to start webui
