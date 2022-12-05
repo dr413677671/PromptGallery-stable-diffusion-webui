@@ -272,8 +272,8 @@ def parse_yaml_dict(rawDict, tag, avatar_prompt, avatar_name, default_negative):
         if parsed_param == False:
             params = parse_param("")
         cur += params
-        cur = add_param('outpath_samples', '\"'+OUTPATH_SAMPLES + str(tag)+'\"', cur)
-        cur = add_param('outpath_grids', '\"'+OUTPATH_GRIDS + str(tag)+'\"', cur)
+        cur = add_param('outpath_samples', '\"'+os.path.join(OUTPATH_SAMPLES, str(tag), "./")+'\"', cur)
+        cur = add_param('outpath_grids', '\"'+os.path.join(OUTPATH_GRIDS, str(tag), "./")+'\"', cur)
         return cur 
     else:
         for item in rawDict.items():

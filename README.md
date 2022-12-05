@@ -255,7 +255,7 @@ Or do something like setup the webui parameters in "param":
 
   ![3-3](./images/3-3.JPG)
 
-  Add default prompts and upload prompt-set yaml library.
+  Add default prompts or default negative (prompt or negative prompt attach to each prompt-set), and upload prompt-set yaml library.
 
   ![3-4](./images/3-4.JPG)
 
