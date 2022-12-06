@@ -19,6 +19,7 @@ import threading
 import requests
 from fastapi.middleware.cors import CORSMiddleware
 import json
+from modules import shared
 
 def on_ui_settings():
     with open("./extensions/prompt_gallery_name.json") as fd:
@@ -51,7 +52,13 @@ def on_ui_settings():
 
 
 def on_ui_tabs():
-    html = """<iframe id="tab_iframe" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://localhost:5173/" frameborder="0" marginwidth="0" marginheight="0"></iframe>"""
+    if  shared.cmd_opts.theme is None or shared.cmd_opts.theme != 'dark':
+        extension_theme = 'white'
+    else:
+        extension_theme = 'black'
+    ip = '127.0.0.1'
+    port = str(shared.cmd_opts.port) if shared.cmd_opts.port is not None else "7860"
+    html = """<iframe id="tab_iframe" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://localhost:5173/?theme={theme:s}&port={port:s}" frameborder="0" marginwidth="0" marginheight="0"></iframe>""".format(theme=extension_theme, port=port)
     with gr.Blocks(analytics_enabled=False, elem_id="prompt_gallery") as prompt_gallery:
         prompt_gallery = gr.HTML(html)
     
