@@ -25,7 +25,7 @@ from modules.generation_parameters_copypaste import image_from_url_text
 import modules.scripts as scripts
 from modules.processing import Processed, process_images
 
-from modules.shared import opts, cmd_opts, state
+from modules.shared import opts, cmd_opts, OptionInfo, hide_dirs, state
 import modules.shared as shared
 
 if '__file__' in locals().keys():
@@ -63,6 +63,91 @@ rawDict = {}
 qc_dict = {}
 trg_img = ''
 current_folder = ''
+
+
+def options_section_def(section_identifier, options_dict):
+    ret = {}
+    for k, v in options_dict.items():
+        v.section = section_identifier
+        ret[k] = v.default
+    return ret
+
+pg_templates = {}
+
+pg_templates.update(options_section_def(('saving-images', "Saving images/grids"), {
+    "samples_save": OptionInfo(True, "Always save all generated images"),
+    "samples_format": OptionInfo('png', 'File format for images'),
+    "samples_filename_pattern": OptionInfo("", "Images filename pattern", component_args=hide_dirs),
+    "save_images_add_number": OptionInfo(True, "Add number to filename when saving", component_args=hide_dirs),
+
+    "grid_save": OptionInfo(True, "Always save all generated image grids"),
+    "grid_format": OptionInfo('png', 'File format for grids'),
+    "grid_extended_filename": OptionInfo(False, "Add extended info (seed, prompt) to filename when saving grid"),
+    "grid_only_if_multiple": OptionInfo(True, "Do not save grids consisting of one picture"),
+    "grid_prevent_empty_spots": OptionInfo(False, "Prevent empty spots in grid (when set to autodetect)"),
+    "n_rows": OptionInfo(-1, "Grid row count; use -1 for autodetect and 0 for it to be same as batch size", gr.Slider, {"minimum": -1, "maximum": 16, "step": 1}),
+
+    "enable_pnginfo": OptionInfo(True, "Save text information about generation parameters as chunks to png files"),
+    "save_txt": OptionInfo(False, "Create a text file next to every image with generation parameters."),
+    "save_images_before_face_restoration": OptionInfo(False, "Save a copy of image before doing face restoration."),
+    "save_images_before_highres_fix": OptionInfo(False, "Save a copy of image before applying highres fix."),
+    "save_images_before_color_correction": OptionInfo(False, "Save a copy of image before applying color correction to img2img results"),
+    "jpeg_quality": OptionInfo(80, "Quality for saved jpeg images", gr.Slider, {"minimum": 1, "maximum": 100, "step": 1}),
+    "export_for_4chan": OptionInfo(True, "If PNG image is larger than 4MB or any dimension is larger than 4000, downscale and save copy as JPG"),
+
+    "use_original_name_batch": OptionInfo(False, "Use original name for output filename during batch process in extras tab"),
+    "save_selected_only": OptionInfo(True, "When using 'Save' button, only save a single selected image"),
+    "do_not_add_watermark": OptionInfo(False, "Do not add watermark to images"),
+
+    "temp_dir":  OptionInfo("", "Directory for temporary images; leave empty for default"),
+    "clean_temp_dir_at_start": OptionInfo(False, "Cleanup non-default temporary directory when starting webui"),
+
+}))
+
+pg_templates.update(options_section_def(('saving-paths', "Paths for saving"), {
+    "outdir_samples": OptionInfo("", "Output directory for images; if empty, defaults to three directories below", component_args=hide_dirs),
+    "outdir_txt2img_samples": OptionInfo("outputs/txt2img-images", 'Output directory for txt2img images', component_args=hide_dirs),
+    "outdir_img2img_samples": OptionInfo("outputs/img2img-images", 'Output directory for img2img images', component_args=hide_dirs),
+    "outdir_extras_samples": OptionInfo("outputs/extras-images", 'Output directory for images from extras tab', component_args=hide_dirs),
+    "outdir_grids": OptionInfo("", "Output directory for grids; if empty, defaults to two directories below", component_args=hide_dirs),
+    "outdir_txt2img_grids": OptionInfo("outputs/txt2img-grids", 'Output directory for txt2img grids', component_args=hide_dirs),
+    "outdir_img2img_grids": OptionInfo("outputs/img2img-grids", 'Output directory for img2img grids', component_args=hide_dirs),
+    "outdir_save": OptionInfo("log/images", "Directory for saving images using the Save button", component_args=hide_dirs),
+}))
+
+pg_templates.update(options_section_def(('saving-to-dirs', "Saving to a directory"), {
+    "save_to_dirs": OptionInfo(False, "Save images to a subdirectory"),
+    "grid_save_to_dirs": OptionInfo(False, "Save grids to a subdirectory"),
+    "use_save_to_dirs_for_ui": OptionInfo(False, "When using \"Save\" button, save images to a subdirectory"),
+    "directories_filename_pattern": OptionInfo("", "Directory name pattern", component_args=hide_dirs),
+    "directories_max_prompt_words": OptionInfo(8, "Max prompt words for [prompt_words] pattern", gr.Slider, {"minimum": 1, "maximum": 20, "step": 1, **hide_dirs}),
+}))
+
+pg_templates.update(options_section_def(('upscaling', "Upscaling"), {
+    "ESRGAN_tile": OptionInfo(192, "Tile size for ESRGAN upscalers. 0 = no tiling.", gr.Slider, {"minimum": 0, "maximum": 512, "step": 16}),
+    "ESRGAN_tile_overlap": OptionInfo(8, "Tile overlap, in pixels for ESRGAN upscalers. Low values = visible seam.", gr.Slider, {"minimum": 0, "maximum": 48, "step": 1}),
+    "realesrgan_enabled_models": OptionInfo(["R-ESRGAN 4x+", "R-ESRGAN 4x+ Anime6B"], "Select which Real-ESRGAN models to show in the web UI. (Requires restart)", gr.CheckboxGroup, lambda: {"choices": realesrgan_models_names()}),
+    "upscaler_for_img2img": OptionInfo(None, "Upscaler for img2img", gr.Dropdown, lambda: {"choices": [x.name for x in sd_upscalers]}),
+    "use_scale_latent_for_hires_fix": OptionInfo(False, "Upscale latent space image when doing hires. fix"),
+}))
+
+pg_templates.update(options_section_def(('ui', "User interface"), {
+    "show_progressbar": OptionInfo(True, "Show progressbar"),
+    "show_progress_every_n_steps": OptionInfo(0, "Show image creation progress every N sampling steps. Set to 0 to disable. Set to -1 to show after completion of batch.", gr.Slider, {"minimum": -1, "maximum": 32, "step": 1}),
+    "show_progress_grid": OptionInfo(True, "Show previews of all images generated in a batch as a grid"),
+    "return_grid": OptionInfo(True, "Show grid in results for web"),
+    "do_not_show_images": OptionInfo(False, "Do not show any images in results for web"),
+    "add_model_hash_to_info": OptionInfo(True, "Add model hash to generation information"),
+    "add_model_name_to_info": OptionInfo(False, "Add model name to generation information"),
+    "disable_weights_auto_swap": OptionInfo(False, "When reading generation parameters from text into UI (from PNG info or pasted text), do not change the selected model/checkpoint."),
+    "send_seed": OptionInfo(True, "Send seed when sending prompt or image to other interface"),
+    "font": OptionInfo("", "Font for image grids that have text"),
+    "js_modal_lightbox": OptionInfo(True, "Enable full page image viewer"),
+    "js_modal_lightbox_initially_zoomed": OptionInfo(True, "Show images zoomed in by default in full page image viewer"),
+    "show_progress_in_title": OptionInfo(True, "Show generation progress in window title."),
+    'quicksettings': OptionInfo("sd_model_checkpoint", "Quicksettings list"),
+    'localization': OptionInfo("None", "Localization (requires restart)", gr.Dropdown, lambda: {"choices": ["None"] + list(localization.localizations.keys())}, refresh=lambda: localization.list_localizations(cmd_opts.localizations_dir)),
+}))
 
 map_sampler_to_idx = {
     'Euler a': 0,
@@ -559,8 +644,9 @@ class Script(scripts.Script):
         return [checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img]
 
     def run(self, p, checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img):
-        backup = shared.opts
-        shared.opts = shared.Options()
+        global pg_templates
+        backup = copy.deepcopy(shared.opts)
+        shared.opts.data.update(pg_templates)
         lines = [x.strip() for x in prompt_display.splitlines()]
         lines = [x for x in lines if len(x) > 0]
 
