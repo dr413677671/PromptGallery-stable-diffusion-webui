@@ -271,8 +271,10 @@ def parse_yaml_dict(rawDict, tag, avatar_prompt, avatar_name, default_negative):
         if parsed_param == False:
             params = parse_param("")
         cur += params
-        cur = add_param('outpath_samples', '\"'+os.path.join(OUTPATH_SAMPLES, str(tag), "./")+'\"', cur)
-        cur = add_param('outpath_grids', '\"'+os.path.join(OUTPATH_GRIDS, str(tag), "./")+'\"', cur)
+        cur += '--outpath_samples \"'+os.path.join(OUTPATH_SAMPLES, str(tag), '')+'\\\"'
+        cur += ' --outpath_grids \"'+os.path.join(OUTPATH_GRIDS, str(tag), '')+'\\\"'
+        # cur = add_param('outpath_samples=\"'+os.path.join(OUTPATH_SAMPLES, str(tag), '')+'\"', cur)
+        # cur = add_param('outpath_grids=\"'+os.path.join(OUTPATH_GRIDS, str(tag), '')+'\"', cur)
         return cur 
     else:
         for item in rawDict.items():
@@ -424,6 +426,9 @@ def scan_outputs(avatar_name):
                 files.remove(each_avatar + '.png')
         if len(files) == 0:
             continue
+        print("Insert file:")
+        for file in files:
+            print(os.path.join(root, folder, file))
         qc_dict[folder] = [os.path.join(root, folder, file) for file in files]
 
     if len(qc_dict.keys()) == 0:
@@ -435,6 +440,12 @@ def update_gallery(dropdown, avatar):
     global trg_img, current_folder
     current_folder = os.path.join(root, dropdown)
     trg_img = os.path.join(root, dropdown, avatar + '.png')
+    print("Detected folders:")
+    print(qc_dict)
+    print("Selected folder:")
+    print(dropdown)
+    print("Detected files:")
+    print(qc_dict[dropdown])
     return qc_dict[dropdown]
 
 def clean_select_picture(filename):
