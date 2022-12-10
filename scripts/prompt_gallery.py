@@ -20,13 +20,19 @@ import requests
 from fastapi.middleware.cors import CORSMiddleware
 import json
 from modules import shared
+from fastapi import APIRouter
+
+
+pg_ip = "0.0.0.0" if shared.cmd_opts.listen else 'localhost'
 
 def on_ui_settings():
+    global pg_ip
+
     with open("./extensions/prompt_gallery_name.json") as fd:
         name = json.load(fd)['name']
     app = FastAPI()
     app.mount('/', StaticFiles(directory='./extensions/'+name,html=True))
-    config = Config(app=app,  host='localhost',port=5173, log_level="info", loop="asyncio", limit_max_requests=1)
+    config = Config(app=app,  host=pg_ip,port=5173, log_level="info", loop="asyncio", limit_max_requests=1)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"], 
@@ -34,8 +40,8 @@ def on_ui_settings():
         allow_methods=["*"], 
         allow_headers=["*"]  
     )
-    
-    thread = threading.Thread(target= uvicorn.run, kwargs={'app':app, 'host': 'localhost', 'port':5173})
+
+    thread = threading.Thread(target= uvicorn.run, kwargs={'app':app, 'host': pg_ip, 'port':5173})
     thread.start()
 
     wait_time = 0
@@ -56,9 +62,13 @@ def on_ui_tabs():
         extension_theme = 'white'
     else:
         extension_theme = 'black'
-    ip = '127.0.0.1'
+    remote_webui = 'localhost'
+    if  shared.cmd_opts.server_name is not None:
+        remote_webui = str(shared.cmd_opts.server_name)
     port = str(shared.cmd_opts.port) if shared.cmd_opts.port is not None else "7860"
-    html = """<iframe id="tab_iframe" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://localhost:5173/?theme={theme:s}&port={port:s}" frameborder="0" marginwidth="0" marginheight="0"></iframe>""".format(theme=extension_theme, port=port)
+    
+    html = """<script>var ip = window.location.hostname; </script>
+    <iframe id="tab_iframe" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://{remote_webui:s}:5173/?theme={theme:s}&port={port:s}&ip={remote_webui:s}" frameborder="0" marginwidth="0" marginheight="0"></iframe>""".format(remote_webui=remote_webui, theme=extension_theme, port=port)
     with gr.Blocks(analytics_enabled=False, elem_id="prompt_gallery") as prompt_gallery:
         prompt_gallery = gr.HTML(html)
     

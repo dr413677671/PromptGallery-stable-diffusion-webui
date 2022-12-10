@@ -121,6 +121,8 @@ Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC11
 
 **Make sure you add "--api --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat (where you start webui) like this:** 
 
+**If using remotly add parmas like this: --cors-allow-origins http://remote-ip:5173 --api --listen --server-name remote-ip**
+
 ![install](./images/0-1.JPG)
 
 
