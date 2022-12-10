@@ -559,6 +559,7 @@ class Script(scripts.Script):
         return [checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img]
 
     def run(self, p, checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img):
+        backup = shared.opts
         shared.opts = shared.Options()
         lines = [x.strip() for x in prompt_display.splitlines()]
         lines = [x for x in lines if len(x) > 0]
@@ -609,5 +610,5 @@ class Script(scripts.Script):
 
         OUTPUTS = {}
         rawDict = {}
-
+        shared.opts = backup
         return Processed(p, images, p.seed, "")
