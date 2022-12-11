@@ -240,6 +240,9 @@ avatar_name = ""
 
 def cmdargs(line):
     args = shlex.split(line)
+    args[args.index('--outpath_samples')+1] = args[args.index('--outpath_samples')+1][:-1]
+    args[args.index('--outpath_grids')+1] = args[args.index('--outpath_grids')+1][:-1]
+    print(args)
     pos = 0
     res = {}
 
@@ -356,10 +359,8 @@ def parse_yaml_dict(rawDict, tag, avatar_prompt, avatar_name, default_negative):
         if parsed_param == False:
             params = parse_param("")
         cur += params
-        cur += '--outpath_samples \"'+os.path.join(OUTPATH_SAMPLES, str(tag), '')+'\\\"'
-        cur += ' --outpath_grids \"'+os.path.join(OUTPATH_GRIDS, str(tag), '')+'\\\"'
-        # cur = add_param('outpath_samples=\"'+os.path.join(OUTPATH_SAMPLES, str(tag), '')+'\"', cur)
-        # cur = add_param('outpath_grids=\"'+os.path.join(OUTPATH_GRIDS, str(tag), '')+'\"', cur)
+        cur += '--outpath_samples \"{} \"'.format(str(os.path.join(OUTPATH_SAMPLES, str(tag), '')))
+        cur += ' --outpath_grids \"{} \"'.format(str(os.path.join(OUTPATH_GRIDS, str(tag), '')))
         return cur 
     else:
         for item in rawDict.items():
