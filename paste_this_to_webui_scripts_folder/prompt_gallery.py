@@ -442,7 +442,7 @@ def save_styles() -> None:
     path = os.path.join(root_path, 'styles.csv')
     # Write to temporary file first, so we don't nuke the file if something goes wrong
     fd, temp_path = tempfile.mkstemp(".csv")
-    with os.fdopen(fd, "w", encoding="utf-8-sig", newline='') as file:
+    with os.fdopen(fd, "a", encoding="utf-8-sig", newline='') as file:
         # _fields is actually part of the public API: typing.NamedTuple is a replacement for collections.NamedTuple,
         # and collections.NamedTuple has explicit documentation for accessing _fields. Same goes for _asdict()
         writer = csv.DictWriter(file, fieldnames=PromptStyle._fields)

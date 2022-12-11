@@ -63,12 +63,12 @@ def on_ui_tabs():
     else:
         extension_theme = 'black'
     remote_webui = 'localhost'
-    if  shared.cmd_opts.server_name is not None:
+    if  shared.cmd_opts.server_name:
         remote_webui = str(shared.cmd_opts.server_name)
     port = str(shared.cmd_opts.port) if shared.cmd_opts.port is not None else "7860"
     
     html = """<script>var ip = window.location.hostname; </script>
-    <iframe id="tab_iframe" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://{remote_webui:s}:5173/?theme={theme:s}&port={port:s}&ip={remote_webui:s}" frameborder="0" marginwidth="0" marginheight="0"></iframe>""".format(remote_webui=remote_webui, theme=extension_theme, port=port)
+    <iframe id="tab_iframe" allow="clipboard-read; clipboard-write" style="width: 100%; min-height: 1080px; padding: 0;margin: 0;border: none;" src="http://{remote_webui:s}:5173/?theme={theme:s}&port={port:s}&ip={remote_webui:s}" frameborder="0" marginwidth="0" marginheight="0"></iframe>""".format(remote_webui=remote_webui, theme=extension_theme, port=port)
     with gr.Blocks(analytics_enabled=False, elem_id="prompt_gallery") as prompt_gallery:
         prompt_gallery = gr.HTML(html)
     
