@@ -132,7 +132,7 @@ Goto Tab extensions in the webui and paste:
 
 1. paste https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git into textbox "URL for extension's git repository"
 
-2. Set Prompt Gallery as "Local directory name"
+2. Set Local directory name as "Prompt Gallery"
 
  ![install](./images/install.JPG)
 
