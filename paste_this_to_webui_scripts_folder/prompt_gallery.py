@@ -133,7 +133,7 @@ pg_templates.update(options_section_def(('ui', "User interface"), {
     "show_progress_grid": OptionInfo(True, "Show previews of all images generated in a batch as a grid"),
     "return_grid": OptionInfo(True, "Show grid in results for web"),
     "do_not_show_images": OptionInfo(False, "Do not show any images in results for web"),
-    "disable_weights_auto_swap": OptionInfo(False, "When reading generation parameters from text into UI (from PNG info or pasted text), do not change the selected model/checkpoint."),
+    # "disable_weights_auto_swap": OptionInfo(False, "When reading generation parameters from text into UI (from PNG info or pasted text), do not change the selected model/checkpoint."),
     "send_seed": OptionInfo(True, "Send seed when sending prompt or image to other interface"),
     "font": OptionInfo("", "Font for image grids that have text"),
     "js_modal_lightbox": OptionInfo(True, "Enable full page image viewer"),
@@ -544,6 +544,21 @@ def clean_select_picture(filename):
             os.remove(os.path.join(current_folder, file))
 
 def image_url(filedata):
+    if type(filedata) == list:
+        if len(filedata) == 0:
+            return None
+        filedata = filedata[0]
+        # for item in filedata:
+        #     if filedata["is_file"]:
+        #         filedata = item
+        #         filename = filedata["name"]
+        #         tempdir = os.path.normpath(tempfile.gettempdir())
+        #         normfn = os.path.normpath(filename)
+        #         assert normfn.startswith(tempdir), 'trying to open image file not in temporary directory'
+
+        #         image = Image.open(filename)
+        #         clean_select_picture(os.path.basename(filename))
+                # return Image.open(filename)
     if type(filedata) == dict and filedata["is_file"]:
         filename = filedata["name"]
         tempdir = os.path.normpath(tempfile.gettempdir())
@@ -554,19 +569,21 @@ def image_url(filedata):
         clean_select_picture(os.path.basename(filename))
         return Image.open(filename)
 
-    if type(filedata) == list:
-        if len(filedata) == 0:
-            return None
+    elif type(filedata) == dict:
+        print(filedata)
+        print("Dict is not file.")
+        return 
 
-        filedata = filedata[0]
 
-    if filedata.startswith("data:image/png;base64,"):
+
+    elif  type(filedata) != dict and filedata.startswith("data:image/png;base64,"):
         filedata = filedata[len("data:image/png;base64,"):]
 
-    filedata = base64.decodebytes(filedata.encode('utf-8'))
-    image = Image.open(io.BytesIO(filedata))
-    return image
-
+        filedata = base64.decodebytes(filedata.encode('utf-8'))
+        image = Image.open(io.BytesIO(filedata))
+        return image
+    return None
+        
 
 def dropdown_change():
     global OUTPUTS, OUTPUTS_DICT
