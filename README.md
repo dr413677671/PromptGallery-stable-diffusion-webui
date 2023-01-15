@@ -119,9 +119,13 @@ Keep your pace. Let's start from building your prompt library. <a href="#build-l
  
 Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) before. If not check out [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to install it first.
 
-**Make sure you add "--api --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat (where you start webui) like this:** 
+-> Below is very important, otherwise "send to webui button will be not functional"
 
-**If using remotly add parmas like this: --cors-allow-origins http://remote-ip:5173 --api --listen --server-name remote-ip**
+**Make sure you add "--api --listen --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat like this**
+
+**If you start webui manually please also make sure you add these parameters to launch.py**
+
+**If using customized webui/ ip and port please refer to cuatomized ip and port**
 
 ![install](./images/0-1.JPG)
 
@@ -140,6 +144,34 @@ Goto Tab extensions in the webui and paste:
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Customized extension ip and port
+
+If you need to customized the ip of this extension.
+
+Search %extension-path%\assets\index.*.js, change "127.0.0.1" into your extension ip
+
+Search %extension-path%\scripts\prompt_gallery.py change 
+
+"""python
+pg_ip = "%your_extension_ip%" if shared.cmd_opts.listen else 'localhost'
+pg_port = %your_extension_port%
+"""
+
+Change webui param to --cors-allow-origins http://%extension-ip%:%extension-port% --api --server-name %webui-ip%
+
+
+### Customized webui IP and port
+
+If your webui executed on customized ip and port. The ip and port should be detected automatically. If not, please try:
+
+Search %extension-path%\scripts\prompt_gallery.py change 
+
+"""python
+    remote_webui = '%webui_ip%'
+    if  shared.cmd_opts.server_name:
+        remote_webui = str(shared.cmd_opts.server_name)
+    port = "%webui_port%"
+"""
 
 ## Usage
 
