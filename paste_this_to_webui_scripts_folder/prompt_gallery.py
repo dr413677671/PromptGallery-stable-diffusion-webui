@@ -297,7 +297,7 @@ def parse_param(param_str):
             m_steps = value
         elif key == "CFG scale":
             m_cfg_scale = value
-        elif value == 'Sampler':
+        elif key == 'Sampler':
             m_sampler_index = map_sampler_to_idx[value]
         elif key == 'Size':
             parse_size(m_width, m_height, value, cur_line)
