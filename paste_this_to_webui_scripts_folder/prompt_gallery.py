@@ -17,7 +17,6 @@ import base64
 import io
 from PIL import Image
 import mimetypes
-from stat import S_IREAD, S_IRGRP, S_IROTH, S_IRWXO, S_IWRITE, S_IWOTH, S_IWRITE
 
 mimetypes.init()
 mimetypes.add_type('application/javascript', '.js')
@@ -656,8 +655,6 @@ class Script(scripts.Script):
     def run(self, p, checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img):
         global pg_templates
         backup = copy.deepcopy(shared.opts)
-        # print("Auth " + str(os.path.join(rela_path, extension_name)))
-        # os.chmod(os.path.join(rela_path, extension_name, 'assets'),  S_IWOTH)
         shared.opts.data.update(pg_templates)
         lines = [x.strip() for x in prompt_display.splitlines()]
         lines = [x for x in lines if len(x) > 0]
