@@ -504,8 +504,8 @@ def scan_outputs(avatar_name):
         if len(files) == 0:
             continue
         # print("Insert file:")
-        # for file in files:
-        #     print(os.path.join(root, folder, file))
+        for file in files:
+            print(os.path.join(root, folder, file))
         qc_dict[folder] = [os.path.join(root, folder, file) for file in files]
 
     if len(qc_dict.keys()) == 0:
@@ -655,6 +655,7 @@ class Script(scripts.Script):
     def run(self, p, checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img):
         global pg_templates
         backup = copy.deepcopy(shared.opts)
+
         shared.opts.data.update(pg_templates)
         lines = [x.strip() for x in prompt_display.splitlines()]
         lines = [x for x in lines if len(x) > 0]
