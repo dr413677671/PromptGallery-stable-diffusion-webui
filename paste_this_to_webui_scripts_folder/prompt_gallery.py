@@ -113,7 +113,11 @@ pg_templates.update(options_section_def(('saving-images', "Saving images/grids")
 #     "outdir_save": OptionInfo("log/images", "Directory for saving images using the Save button", component_args=hide_dirs),
 # }))
 
+
 pg_templates.update(options_section_def(('saving-to-dirs', "Saving to a directory"), {
+    "save_to_dirs": OptionInfo(False, "Save images to a subdirectory"),
+    "grid_save_to_dirs": OptionInfo(False, "Save grids to a subdirectory"),
+    "use_save_to_dirs_for_ui": OptionInfo(False, "When using \"Save\" button, save images to a subdirectory"),
     "directories_filename_pattern": OptionInfo("", "Directory name pattern", component_args=hide_dirs),
     "directories_max_prompt_words": OptionInfo(8, "Max prompt words for [prompt_words] pattern", gr.Slider, {"minimum": 1, "maximum": 20, "step": 1, **hide_dirs}),
 }))
