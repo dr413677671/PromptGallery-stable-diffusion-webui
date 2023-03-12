@@ -158,7 +158,10 @@ map_sampler_to_idx = {
     'DPM2 Karras': 9,
     'DPM2 a Karras': 10,
     'DDIM': 11,
-    'PLMS': 12}
+    'PLMS': 12,
+    'DPM++ 2S a Karras': 13,
+    'DPM++ 2M Karras': 14,
+    'DPM++ SDE Karras': 15}
 
 map_keys = {
     "value": "prompt",
