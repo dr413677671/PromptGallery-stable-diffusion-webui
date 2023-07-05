@@ -81,124 +81,75 @@
 
 ## About The Project
 
-TLDR; Stable-diffusion is an AI model which can generate illustration based on text-based prompts. What does a prompt/prompt-set in AI's eyes? How do we do prompt combination like shopping? 
-
-This is an extension of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). Checkout this powerful tool.
-
-Use Prompt Gallery like a cookbook. Build your own prompt-set library and do illustration/creation. Life is that easy.
-
 > Please star the repo if you likes it :>
 
-## Cool Features:
-* Scalable Prompt Library
-* Stable-Diffusion-WebUI Integration
-* Avatar System (model/character presets)
+> 🐘 Good news: the extension now support webui dark theme.
 
-Keep your pace. Let's start from building your prompt library. <a href="#build-library">Build Library</a>
+Prompt Gallery works as a prompt-set library extension of [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui). Stable-diffusion is an AI model which can generate illustration based on text-based prompts
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+The extension combined with four features:
+1. prompt-set library management
+2. preview pictures management
+3. select a combination of prompt-sets and generate illustration in webui
+4. avatar/character system
 
-
-
-### Built With
-
-* [![Vue][Vue.js]][Vue-url]
-* [![JavaScript][JSP]][JSP-url]
-* Gradio
-* [![Pytorch][Pytorch]][Pytorch-url]
-* [![React][fastapi-img]][fastapi-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
- > 🐘 Good news: we now adapt to webui dark theme.
 
 ### Prerequisites & Installation
  
-Make sure you cloned the [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) before. If not check out [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to install it first.
+1. Install [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui)
 
--> Below is very important, otherwise "send to webui button will be not functional"
+2. Edit webui-user.bat (Win) or webui-user.sh (Linux) with these arguments "--api --listen --cors-allow-origins http://localhost:5173"
 
-**Make sure you add "--api --listen --cors-allow-origins http://localhost:5173" as "COMMANDLINE_ARGS" in webui-user.bat like this**
-
-**If you start webui manually please also make sure you add these parameters to launch.py**
-
-**If using customized webui/ ip and port please refer to cuatomized ip and port**
-
-![install](./images/0-1.JPG)
+>> ![install](./images/0-1.JPG)
 
 
-Follow instructions on [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) to start webui
+3. Start webui
 
-Goto Tab extensions in the webui and paste:
+4. Install Prompt-gallery extension in Web-UI
 
-1. paste https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git into textbox "URL for extension's git repository"
+>> 4.1 Inout https://github.com/dr413677671/PromptGallery-stable-diffusion-webui.git in "URL for extension's git repository"
 
-2. Set Local directory name as "Prompt Gallery"
+>> 4.2 Input "Prompt Gallery" in Local directory name
 
- ![install](./images/install.JPG)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+ >> ![install](./images/install.JPG)
 
 
-## Customized extension ip and port
+Please refer to section <a href="###Customized extension ip and port (optional)">Customized extension ip and port (optional)</a> if you are using customized webui ip/port.
 
-If you need to customized the ip of this extension.
-
-Search %extension-path%\assets\index.*.js, change "127.0.0.1" into your extension ip
-
-Search %extension-path%\scripts\prompt_gallery.py change 
-
-"""python
-pg_ip = "%your_extension_ip%" if shared.cmd_opts.listen else 'localhost'
-pg_port = %your_extension_port%
-"""
-
-Change webui param to --cors-allow-origins http://%extension-ip%:%extension-port% --api --server-name %webui-ip%
-
-
-### Customized webui IP and port
-
-If your webui executed on customized ip and port. The ip and port should be detected automatically. If not, please try:
-
-Search %extension-path%\scripts\prompt_gallery.py change 
-
-"""python
-    remote_webui = '%webui_ip%'
-    if  shared.cmd_opts.server_name:
-        remote_webui = str(shared.cmd_opts.server_name)
-    port = "%webui_port%"
-"""
 
 ## Usage
 
-After installation, try restart webui. You should see a initial frontpage like this.
+Restart webui. You should see a initial frontpage like this.
 
- ![preset](./images/0-0.png)
+![preset](./images/0-0.png)
 
-There is no preview pictures. Prompt Gallery works like a framework. You need to generate your own prompt-set library.
+There is no preview pictures. Prompt Gallery works like a framework. You need to create your own prompt-set library folloting by two steps:
+1. edit your prompt-set dictionary
+2. generate preview pictures for prompt-sets
 
-Please follow the instructions below to build your own prompt-set library: instead you could watch the video tutorial:
+Please follow the instructions below to build your own prompt-set library: Alternatively you could watch the video tutorial:
 <a href="https://www.youtube.com/watch?v=9U6-moIJUkk">View Demo</a>
 
-Don't be afraid to build the library. There are some cool repo help you browse the prompts.
 
-E.g. If you love anime, goto github and search "tags" or "prompts".
+### Build prompt-set library
 
-You will see many cool repos like [sd-danbooru-tags](https://github.com/Vetchems/sd-danbooru-tags) or [DeepDanbooru](https://github.com/KichangKim/DeepDanbooru).
-
-### Build library
-
-Build up the prompt-set library and character library.
+Definition of avatars.yaml:
 
 | value | negative | param |
 | :-----| ----: | :----: |
 | Positive prompts | Negative prompts | Other params for webui image generation |
 
-Edit the teamplate at <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/avatars.yaml, and customize your avatars with prompts.
+#### Build Avatar library
+
+> Avatars is the charater displayed on the top of the extension. Defined your own character by editing <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/avatars.yaml
+
+> The field "value" is the prompt-set for each characters.
 
 Teamplate: 
    ```yaml
@@ -209,9 +160,28 @@ Teamplate:
       value: "petite, 1girl, solo, pink hair, very long hair, school uniform, happy,outdoors, flower field, excited"
    ```
 
-See the teamplate at <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/tags.yaml, and create your own prompt-set library.
+#### Build prompt-set library
 
-Categorized your prompt-set Hierarchyly. For example you can create tags.yaml like this:
+> Prompt-sets are prompts displayed as cart boxes below. 
+
+> Customized your own prompt-set by editing <stable-diffusion-webui-path>/extensions/your-prompt-gallery-extension-name/assets/tags.yaml
+
+```yaml
+    category-tier-1:
+      category-tier-1-1:
+        "prompt-set-name-1":
+          value: "prompt1, prompt2"
+          negative: "neg-prompt1, neg-prompt2"
+        "prompt-set-name-2"
+          value: "prompt1"
+          negative: "neg-prompt1"
+      category-tier-1-2:
+        "prompt-set-name-3":
+          value: "prompts"
+```
+
+
+> The prompt-set are managed hierarchyly (e.g. the config below defined a tier 1 category "Figure" containes two tier two categories "Hair" and "Face")
 
    ```yaml
     Figure:
@@ -219,8 +189,13 @@ Categorized your prompt-set Hierarchyly. For example you can create tags.yaml li
         "ponny-tail":
           value: "ponny-tail"
           negative: "lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, "
+        "short_hair"
           value: "short_hair"
           negative: "long_hair，lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, "
+      Face:
+        "smile":
+          value: "smile"
+
     Background:
       '':
         simple background:
@@ -236,7 +211,7 @@ Categorized your prompt-set Hierarchyly. For example you can create tags.yaml li
           value: "Woods background, fantacy background,"
    ```
 
-Or do something like setup the webui parameters in "param":
+> Additionally you could edit field "param" to customized AI model parameters (or switch models using the webui model selection tab.):
 
    ```yaml
     Style:
@@ -258,67 +233,71 @@ Or do something like setup the webui parameters in "param":
           value: colorful startrails
    ```
 
+> Useful links for anime prompts:
+>> [sd-danbooru-tags](https://github.com/Vetchems/sd-danbooru-tags) or [DeepDanbooru](https://github.com/KichangKim/DeepDanbooru).
 
-### Start Prompt Gallery
 
-  Refresh webui.
+### Using Prompt Gallery
 
-  Slect tab "Prompt Gallery" on top navigation bar.
+1. Slect tab "Prompt Gallery" on top navigation bar. You should see your dined prompt-sets in prompt-gallery.
 
-  You should see your prompts in prompt-gallery.
+2. Select the avatar (model for demo)
 
-  Select avatar (model for demo) -> Select prompt-sets -> Click "send WebUI"
+3. Select multiple prompt-sets 
+ 
+4. Click "send WebUI"
 
   ![2-1](./images/2-1.JPG)
 
-  Checkout the downloaded Images
+5. In a few minutes, Images geneated with teh selected prompt-sets will be downloaded in your browser
 
   ![2-2](./images/2-2.JPG)
 
-  But just the prompt-set is not enough. Let's generate preview picture for them.
+6. The preview picture is missing. To add preview picture for each prompt-set, please refer to the next section.
 
 ### Populate previews and QC
 
-  For instance having added two new prompt-sets, there will be no preview pictures for them.
+1. For newly installed exteantion, there will be no preview pictures for each prompt-set.
 
   ![3-1](./images/3-1.JPG)
 
-  Goto tab "txt2img" and Select "Prompt Gallery" in tab "scripts"
+2. Goto tab "txt2img" in webui and Select "Prompt Gallery" in "scripts"
 
   ![3-2](./images/3-2.JPG)
 
-  Upload yaml library of avatar first and select avatar.
+3. Upload the avatar yaml library mentioned in section "Build Avatar library".
 
   ![3-3](./images/3-3.JPG)
 
-  Add default prompts or default negative (prompt or negative prompt attach to each prompt-set), and upload prompt-set yaml library.
+4. Add default prompts or default negative (optional), default prompts are additional prompts that applied for each prompt-set preview picture generation
 
-  If you dont want to skip the prompt-set whose preview is already generated -> Uncheck "skip exists".
+5. Select "skip exists" if you wish to skip generating preview if preview picture exists for a prompt-set
 
   ![3-4](./images/3-4.JPG)
 
-  Wait for stable-diffusion-webui generate previews automatically.
+6. Wait for stable-diffusion-webui generate previews automatically.
 
   ![3-5](./images/3-5.JPG)
 
-  Pick the best image for preview.
+7. Pick the best image for preview picture of each prompt-set.
 
   ![3-6](./images/3-6.JPG)
 
-  Reflesh. Check it out in Prompt Gallery.
+8. Reflesh the browser. You should see the preview pictures in Prompt Gallery.
 
   ![3-7](./images/3-7.JPG)
 
-  You could always inspect you pictures manually in prompt-gallery-directory/assets/preview/
+9. The preview pictures are stored in prompt-gallery-directory/assets/preview/. You could always inspect the pictures manually.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ### Cutomize default image generation parameters
 
-Edit webui-directory/extension/prompt-gallery-extension-name/paste_this_to_webui_scripts_folder/prompt_gallery.py
+Sometimes you need to defined the default values for the AI model parameters.
 
-You should see the customize setup at the top:
+1. Change the params  at the top of webui-directory/extension/prompt-gallery-extension-name/paste_this_to_webui_scripts_folder/prompt_gallery.py
+
 
 ```python
 BATCH_SIZE = 4
@@ -333,7 +312,19 @@ TILING = 'false'
 DO_NOT_SAVE_GRID = 'false'
 ```
 
-Change the params if you need.
+### Customized extension ip and port (optional)
+
+If you are using customized ip for webui and the extension fail to automatically detected your customized ip. Please try:
+
+1. Search %extension-path%\assets\index.*.js, change "127.0.0.1" to your customized webui ip
+
+2. Search %extension-path%\scripts\prompt_gallery.py change 
+
+```python
+pg_ip = "%your_webui_ip%" if shared.cmd_opts.listen else 'localhost'
+pg_port = %your_webui_port%--
+```
+3. Change the ip address in webui-user.bat (Win) or webui-user.sh (Linux)
 
 <!-- CONTRIBUTING -->
 ## Contributing
@@ -343,6 +334,13 @@ Contributions are what make the open source community such an amazing place to l
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Built With
+
+* [![Vue][Vue.js]][Vue-url]
+* [![JavaScript][JSP]][JSP-url]
+* Gradio
+* [![Pytorch][Pytorch]][Pytorch-url]
+* [![React][fastapi-img]][fastapi-url]
 
 <!-- CONTACT -->
 ## Talk with me
