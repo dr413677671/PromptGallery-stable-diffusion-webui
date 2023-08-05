@@ -17,7 +17,7 @@ import base64
 import io
 from PIL import Image
 import mimetypes
-
+from modules.paths_internal import extensions_dir
 mimetypes.init()
 mimetypes.add_type('application/javascript', '.js')
 
@@ -35,16 +35,16 @@ if '__file__' in locals().keys():
 else:
     root_path = os.path.abspath(shared.script_path)
 
-rela_path =  os.path.join( 'extensions')
+rela_path =  os.path.join('extensions')
 
 try:
-    with open( os.path.join( rela_path, 'prompt_gallery_name.json') ) as fd:
+    with open(os.path.join(extensions_dir, 'prompt_gallery_name.json')) as fd:
         extension_name = json.load(fd)['name']
 except:
     extension_name = "Prompt Gallery"
-
-OUTPATH_SAMPLES = os.path.join(rela_path, extension_name, 'assets', 'preview')
-OUTPATH_GRIDS =  os.path.join(rela_path, extension_name, 'assets', 'grid')
+    
+OUTPATH_SAMPLES = os.path.join(extensions_dir, extension_name, 'assets', 'preview')
+OUTPATH_GRIDS =  os.path.join(extensions_dir, extension_name, 'assets', 'grid')
 
 BATCH_SIZE = 2
 N_ITER = 2

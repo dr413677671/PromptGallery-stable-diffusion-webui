@@ -7,6 +7,7 @@ import modules.extras
 import modules.ui
 from modules.shared import opts, cmd_opts
 from modules import shared, scripts
+from modules.paths_internal import extensions_dir
 from modules import script_callbacks
 from pathlib import Path
 from typing import List, Tuple
@@ -31,11 +32,11 @@ pg_port = 5173
 def on_ui_settings():
     global pg_ip
    
-    with open("./extensions/prompt_gallery_name.json") as fd:
+    with open(os.path.join(extensions_dir, 'prompt_gallery_name.json')) as fd:
         name = json.load(fd)['name']
     # os.chmod('./extensions/'+name, stat.S_IRWXO)
     app = FastAPI()
-    app.mount('/', StaticFiles(directory='./extensions/'+name,html=True))
+    app.mount('/', StaticFiles(directory=extensions_dir+"/"+name,html=True))
     config = Config(app=app,  host=pg_ip,port=pg_port, log_level="info", loop="asyncio", limit_max_requests=1)
     app.add_middleware(
         CORSMiddleware,
