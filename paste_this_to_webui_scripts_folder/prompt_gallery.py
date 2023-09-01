@@ -347,9 +347,9 @@ def parse_yaml_dict(rawDict, tag, avatar_prompt, avatar_name, default_negative):
                 params = parse_param(rawDict['param'])
                 parsed_param = True
             elif key == 'value':
-                m_positive = value + m_positive
+                m_positive = m_positive + ', ' + value
             elif key == 'negative':
-                m_negative = value +','+ m_negative
+                m_negative = m_negative + ', ' + value
 
         cur += "--{key} \"{value}\" ".format(key='prompt', value= m_positive)
         cur += "--{key} \"{value}\" ".format(key='negative_prompt', value= m_negative)
@@ -460,7 +460,7 @@ def load_prompt(file, default_negative, dropdown, skip_exist):
     if dropdown == '' or file is None:
         return
     rawDict = yaml.load(file, Loader = yaml.BaseLoader)
-    default_negative = default_negative + ',' + avatar_negatives[avatar_names.index(dropdown)] 
+    default_negative = default_negative + ', ' + avatar_negatives[avatar_names.index(dropdown)] 
     parse_yaml_dict(rawDict, "", avatar_prompts[avatar_names.index(dropdown)], dropdown, default_negative)
     prompt_txt = ""
     keys = list(filter(lambda x: x not in EXCLUDED_TAGS, OUTPUTS.keys()))
