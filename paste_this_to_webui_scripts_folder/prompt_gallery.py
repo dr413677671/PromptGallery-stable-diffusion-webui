@@ -460,7 +460,10 @@ def load_prompt(file, default_negative, dropdown, skip_exist):
     if dropdown == '' or file is None:
         return
     rawDict = yaml.load(file, Loader = yaml.BaseLoader)
-    default_negative = default_negative + ', ' + avatar_negatives[avatar_names.index(dropdown)] 
+    if len(default_negative) != 0:
+        default_negative = default_negative + ', ' + avatar_negatives[avatar_names.index(dropdown)]
+    else:
+        default_negative = avatar_negatives[avatar_names.index(dropdown)]
     parse_yaml_dict(rawDict, "", avatar_prompts[avatar_names.index(dropdown)], dropdown, default_negative)
     prompt_txt = ""
     keys = list(filter(lambda x: x not in EXCLUDED_TAGS, OUTPUTS.keys()))
