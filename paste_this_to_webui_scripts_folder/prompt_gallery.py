@@ -454,13 +454,21 @@ def save_styles() -> None:
         shutil.move(path, path + ".bak")
     shutil.move(temp_path, path)
 
-def load_prompt(file, dropdown, skip_exist):
+def load_prompt(file, default_positive, default_negative, dropdown, skip_exist):
     global SKIP_EXISTS
     SKIP_EXISTS = skip_exist
     if dropdown == '' or file is None:
         return
     rawDict = yaml.load(file, Loader = yaml.BaseLoader)
-    parse_yaml_dict(rawDict, "", avatar_prompts[avatar_names.index(dropdown)], dropdown, avatar_negatives[avatar_names.index(dropdown)])
+    if len(default_positive) != 0:
+        default_positive = avatar_prompts[avatar_names.index(dropdown)] + ', ' + default_positive
+    else:
+        default_positive = avatar_prompts[avatar_names.index(dropdown)]
+    if len(default_negative) != 0:
+        default_negative = avatar_negatives[avatar_names.index(dropdown)] + ', ' + default_negative
+    else:
+        default_negative = avatar_negatives[avatar_names.index(dropdown)]
+    parse_yaml_dict(rawDict, "", default_positive, dropdown, default_negative)
     prompt_txt = ""
     keys = list(filter(lambda x: x not in EXCLUDED_TAGS, OUTPUTS.keys()))
     for style in keys:
@@ -468,23 +476,19 @@ def load_prompt(file, dropdown, skip_exist):
             prompt_txt += each_line + '\n'
     return [prompt_txt, gr.Row.update(visible=True)]
 
-def load_avartar(avatar_dict, default_positive, default_negative):
+def load_avartar(avatar_dict):
     avatars = yaml.load(avatar_dict, yaml.BaseLoader)
 
     for name, prompt in avatars.items():
         avatar_names.append(name)
-        if 'value' in prompt.keys() and len(default_positive) != 0:
-            avatar_prompts.append(prompt['value'] + ', ' + default_positive)
-        elif 'value' in prompt.keys():
+        if 'value' in prompt.keys():
             avatar_prompts.append(prompt['value'])
         else:
-            avatar_prompts.append(default_positive + ', ')
-        if 'negative' in prompt.keys() and len(default_negative) != 0:
-            avatar_negatives.append(prompt['negative'] + ', ' + default_negative)
-        elif 'negative' in prompt.keys():
+            avatar_prompts.append('')
+        if 'negative' in prompt.keys():
             avatar_negatives.append(prompt['negative'])
         else:
-            avatar_negatives.append(default_positive + ', ')
+            avatar_negatives.append('')
     return [gr.Dropdown.update(choices=avatar_names, value=avatar_names[0]), gr.Column.update(visible=True),  gr.Group.update(visible=True)] 
 
 def scan_outputs(avatar_name):
@@ -631,7 +635,7 @@ class Script(scripts.Script):
             prompt_display = gr.Textbox(label="List of prompt inputs", lines=1)
 
         
-        prompt_dict.change(fn=load_prompt, inputs=[prompt_dict, dropdown, skip_exist], outputs=[prompt_display, save_prompts])
+        prompt_dict.change(fn=load_prompt, inputs=[prompt_dict, default_positive, default_negative, dropdown, skip_exist], outputs=[prompt_display, save_prompts])
         open_button.click(fn=lambda: open_folder(OUTPATH_SAMPLES), inputs=[], outputs=[])
         export_button.click(fn=save_styles, inputs=[], outputs=[])
 
@@ -659,7 +663,7 @@ class Script(scripts.Script):
         rename_button.click(fn=rename_preview, inputs=[dropdown], outputs=[])
             # qc_select.click(fn=scan_outputs, inputs=[], outputs=[preview_dropdown])
 
-        avatar_dict.change(fn=load_avartar, inputs=[avatar_dict, default_positive, default_negative], outputs=[dropdown, avatar_col, qc_widgets])
+        avatar_dict.change(fn=load_avartar, inputs=[avatar_dict], outputs=[dropdown, avatar_col, qc_widgets])
         return [checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img]
 
     def run(self, p, checkbox_iterate, avatar_dict, prompt_dict, default_negative, default_positive, dropdown, prompt_display, rename_button, label_avatar, open_button, export_button, skip_exist, label_presets, label_preview, preview_dropdown, preview_gallery, qc_select, qc_refresh, qc_show, selected_img):
