@@ -271,7 +271,8 @@ def add_param(key, value, cur_str):
 
 def parse_size(i_width, i_height, str_size, cur_str):
     i_width = str_size.split('x')[0]
-    i_height = str_size.split('x')[1]  
+    i_height = str_size.split('x')[1] 
+    return i_width, i_height
 
 def parse_virariant_size(str_size, cur_str):
     width = str_size.split('x')[0]
@@ -306,7 +307,7 @@ def parse_param(param_str):
         elif key == 'Sampler':
             m_sampler_index = map_sampler_to_idx[value]
         elif key == 'Size':
-            parse_size(m_width, m_height, value, cur_line)
+            m_width, m_height = parse_size(m_width, m_height, value, cur_line)
         elif key == 'Seed resize from':
             cur_line = parse_virariant_size(value, cur_line)
         elif key == 'Seed':
